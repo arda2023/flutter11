@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
                 ),
                 height: 350,
               ),
-              Plusminus(),
+              Expanded(child: Plusminus()),
             ],
           ),
         ),
