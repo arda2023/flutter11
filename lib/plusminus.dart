@@ -11,16 +11,14 @@ class Plusminus extends StatefulWidget {
 class _PlusminusState extends State<Plusminus> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(
-        children: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.set_meal)),
-          ShadIconButton.outline(
-            icon: const Icon(LucideIcons.rocket),
-            onPressed: () => print('Outline'),
-          ),
-        ],
-      ),
+    return Row(
+      children: [
+        IconButton(onPressed: () {}, icon: Icon(Icons.set_meal)),
+        ShadIconButton.outline(
+          icon: const Icon(LucideIcons.rocket),
+          onPressed: () => print('Outline'),
+        ),
+      ],
     );
   }
 }
