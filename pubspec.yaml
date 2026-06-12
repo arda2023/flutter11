@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   moon_design: ^1.1.0
   shadcn_ui: ^0.54.0
+  wave_animation: ^1.0.4
 
 dev_dependencies:
   flutter_test:

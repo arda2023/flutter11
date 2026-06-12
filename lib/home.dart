@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter11/plusminus.dart';
+import 'package:flutter11/tropfen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -18,8 +19,10 @@ class HomePage extends StatelessWidget {
                   color: Colors.blue,
                 ),
                 height: 350,
+                child: Tropfen(),
               ),
-              Expanded(child: Plusminus()),
+              SizedBox(height: 26),
+              Plusminus(),
             ],
           ),
         ),

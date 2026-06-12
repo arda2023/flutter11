@@ -605,6 +605,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
+  wave_animation:
+    dependency: "direct main"
+    description:
+      name: wave_animation
+      sha256: "8bef88d85220efc5a9603958216ebad73c0294419e67a3ff328173c1c4d165b1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   web:
     dependency: transitive
     description:
