@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 const assetName = 'assets/drop.svg';
 final Widget svg = SvgPicture.asset(assetName, semanticsLabel: 'Dart Logo');
@@ -16,7 +16,8 @@ class _TropfenState extends State<Tropfen> {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       assetName,
-      colorFilter: ColorFilter.mode(Colors.red, BlendMode.srcIn),
+      fit: BoxFit.contain,
+      colorFilter: const ColorFilter.mode(Colors.red, BlendMode.srcIn),
     );
   }
 }
