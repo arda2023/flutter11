@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
                   color: Colors.blue,
                 ),
                 height: 350,
+                width: double.infinity,
                 child: Tropfen(),
               ),
               SizedBox(height: 26),

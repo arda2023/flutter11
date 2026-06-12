@@ -37,6 +37,9 @@ dependencies:
   moon_design: ^1.1.0
   shadcn_ui: ^0.54.0
   wave_animation: ^1.0.4
+  forui: ^0.22.3
+  forui_assets: ^0.22.1
+  flutter_svg: ^2.3.0
 
 dev_dependencies:
   flutter_test:
