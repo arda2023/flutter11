@@ -48,13 +48,14 @@ class _PlusminusState extends State<Plusminus> {
               border: Border.all(width: 1, color: Colors.grey.shade200),
             ),
             child: const Center(
-              child: Text(
-                "250 ml",
-                style: TextStyle(
-                  color: Colors.blue, // Blaue Schrift wie im Bild
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
+              child: ExpansionTile(
+                title: Text("_option1"),
+                children: [
+                  ListTile(title: Text("option2")),
+                  ListTile(title: Text("option3")),
+                  ListTile(title: Text("option4")),
+                  ListTile(title: Text("option5")),
+                ],
               ),
             ),
           ),
