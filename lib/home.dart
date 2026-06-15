@@ -2,8 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter11/plusminus.dart';
 import 'package:flutter11/tropfen.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentMl = 0;
+  final int _maxMl = 1000;
+
+  void pressedPlus() {
+    if (_currentMl < 1000) {
+      setState(() {
+        _currentMl += 250;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +36,7 @@ class HomePage extends StatelessWidget {
                 ),
                 height: 350,
                 width: double.infinity,
-                child: Tropfen(),
+                child: Tropfen(aktuelleMl: _currentMl),
               ),
               SizedBox(height: 26),
               Plusminus(),
