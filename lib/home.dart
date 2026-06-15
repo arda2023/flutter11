@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void pressedMinus() {
-    if (_currentMl > 250) {
+    if (_currentMl > 0) {
       setState(() {
         _currentMl -= 250;
       });
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 26),
               Plusminus(
                 onPlusPressed: pressedPlus,
-                onMinusPressed: pressedPlus,
+                onMinusPressed: pressedMinus,
               ),
             ],
           ),
