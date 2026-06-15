@@ -6,9 +6,13 @@ class Plusminus extends StatefulWidget {
     super.key,
     required this.onPlusPressed,
     required this.onMinusPressed,
+    required this.onStepSelected,
+    required this.currentStep,
   });
   final VoidCallback onPlusPressed;
   final VoidCallback onMinusPressed;
+  final ValueChanged<int> onStepSelected;
+  final int currentStep;
 
   @override
   _PlusminusState createState() => _PlusminusState();
@@ -47,14 +51,22 @@ class _PlusminusState extends State<Plusminus> {
               // Eine sehr dezente graue Umrandung, passend zu Shadcn UI Outlines
               border: Border.all(width: 1, color: Colors.grey.shade200),
             ),
-            child: const Center(
+            child: Center(
               child: ExpansionTile(
-                title: Text("_option1"),
+                title: Text("${widget.currentStep}"),
                 children: [
-                  ListTile(title: Text("option2")),
-                  ListTile(title: Text("option3")),
-                  ListTile(title: Text("option4")),
-                  ListTile(title: Text("option5")),
+                  ListTile(
+                    title: Text("500ml"),
+                    onTap: () {
+                      widget.onStepSelected(500);
+                    },
+                  ),
+                  ListTile(
+                    title: Text("1L"),
+                    onTap: () {
+                      widget.onStepSelected(1000);
+                    },
+                  ),
                 ],
               ),
             ),

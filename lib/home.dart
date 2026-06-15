@@ -11,7 +11,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentMl = 0;
-  final int _stepMl = 250;
+  int _stepMl = 250;
+  void newStep(int option) {
+    setState(() {
+      _stepMl = option;
+    });
+  }
 
   void pressedPlus() {
     if (_currentMl < 1000) {
@@ -50,6 +55,8 @@ class _HomePageState extends State<HomePage> {
               Plusminus(
                 onPlusPressed: pressedPlus,
                 onMinusPressed: pressedMinus,
+                currentStep: _stepMl,
+                onStepSelected: newStep,
               ),
             ],
           ),
