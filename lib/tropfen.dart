@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-const assetName = 'assets/drop.svg';
-final Widget svg = SvgPicture.asset(assetName, semanticsLabel: 'Dart Logo');
+const _dropAsset = 'assets/tropfen.svg';
 
-class Tropfen extends StatefulWidget {
+class Tropfen extends StatelessWidget {
   const Tropfen({super.key});
 
   @override
-  _TropfenState createState() => _TropfenState();
-}
-
-class _TropfenState extends State<Tropfen> {
-  @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      assetName,
-      fit: BoxFit.contain,
-      colorFilter: const ColorFilter.mode(Colors.red, BlendMode.srcIn),
+    return Center(
+      child: SvgPicture.asset(
+        _dropAsset,
+        width: 180,
+        height: 260,
+        fit: BoxFit.contain,
+        colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+        semanticsLabel: 'Tropfen',
+      ),
     );
   }
 }
