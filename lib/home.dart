@@ -11,12 +11,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentMl = 0;
-  final int _maxMl = 1000;
 
   void pressedPlus() {
     if (_currentMl < 1000) {
       setState(() {
         _currentMl += 250;
+      });
+    }
+  }
+
+  void pressedMinus() {
+    if (_currentMl > 250) {
+      setState(() {
+        _currentMl -= 250;
       });
     }
   }
@@ -39,7 +46,10 @@ class _HomePageState extends State<HomePage> {
                 child: Tropfen(aktuelleMl: _currentMl),
               ),
               SizedBox(height: 26),
-              Plusminus(),
+              Plusminus(
+                onPlusPressed: pressedPlus,
+                onMinusPressed: pressedPlus,
+              ),
             ],
           ),
         ),

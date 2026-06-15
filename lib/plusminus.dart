@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 class Plusminus extends StatefulWidget {
-  const Plusminus({super.key});
+  const Plusminus({
+    super.key,
+    required this.onPlusPressed,
+    required this.onMinusPressed,
+  });
+  final VoidCallback onPlusPressed;
+  final VoidCallback onMinusPressed;
 
   @override
   _PlusminusState createState() => _PlusminusState();
@@ -20,7 +26,7 @@ class _PlusminusState extends State<Plusminus> {
             height: 48, // Feste Höhe für ein gutes Klickgefühl
             child: ShadIconButton.outline(
               icon: const Icon(LucideIcons.minus),
-              onPressed: () => print('Minus'),
+              onPressed: widget.onMinusPressed,
               // Keine Breite setzen, das übernimmt das Expanded!
             ),
           ),
@@ -63,7 +69,7 @@ class _PlusminusState extends State<Plusminus> {
             height: 48,
             child: ShadIconButton.outline(
               icon: const Icon(LucideIcons.plus),
-              onPressed: () => print('Plus'),
+              onPressed: widget.onPlusPressed,
             ),
           ),
         ),
