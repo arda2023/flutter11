@@ -83,7 +83,8 @@ class _PlusminusState extends State<Plusminus> {
                   SizedBox(height: 10),
                   ShadButton(
                     onPressed: () {
-                      setState(() {});
+                      widget.onStepSelected(_optionen[_selectedOption]);
+                      _popoverController.toggle();
                     },
                     width: double.infinity,
                     child: const Text('Primary'),
@@ -102,7 +103,7 @@ class _PlusminusState extends State<Plusminus> {
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(width: 1, color: Colors.grey.shade200),
                   ),
-                  child: Center(child: Text("${_selectedOption}ml")),
+                  child: Center(child: Text("${widget.currentStep}ml")),
                 ),
               ),
             ),

@@ -31,35 +31,35 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         _currentMl -= _stepMl;
       });
+    } else {
+      _currentMl = 0;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(18),
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(28),
-                  color: Colors.blue,
-                ),
-                height: 350,
-                width: double.infinity,
-                child: Tropfen(aktuelleMl: _currentMl),
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(28),
+                color: Colors.blue,
               ),
-              SizedBox(height: 26),
-              Plusminus(
-                onPlusPressed: pressedPlus,
-                onMinusPressed: pressedMinus,
-                currentStep: _stepMl,
-                onStepSelected: newStep,
-              ),
-            ],
-          ),
+              height: 350,
+              width: double.infinity,
+              child: Tropfen(aktuelleMl: _currentMl),
+            ),
+            SizedBox(height: 26),
+            Plusminus(
+              onPlusPressed: pressedPlus,
+              onMinusPressed: pressedMinus,
+              currentStep: _stepMl,
+              onStepSelected: newStep,
+            ),
+          ],
         ),
       ),
     );
