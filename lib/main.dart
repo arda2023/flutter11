@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter11/mainscreen.dart';
+import 'package:flutter11/screens/Home_Screen.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 void main() {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         colorScheme: const ShadZincColorScheme.dark(),
       ),
-      home: const MainScreen(),
+      home: HomeScreen(),
     );
   }
 }
