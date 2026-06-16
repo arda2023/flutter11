@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
-const List<int> _optionen = <int>[250, 500, 1000];
+const List<int> _optionen = <int>[100, 250, 500, 750, 1000];
 const double _kItemExtent = 32.0;
 
 class Plusminus extends StatefulWidget {
@@ -12,6 +13,7 @@ class Plusminus extends StatefulWidget {
     required this.onStepSelected,
     required this.currentStep,
   });
+
   final VoidCallback onPlusPressed;
   final VoidCallback onMinusPressed;
   final ValueChanged<int> onStepSelected;
@@ -22,7 +24,9 @@ class Plusminus extends StatefulWidget {
 }
 
 class _PlusminusState extends State<Plusminus> {
-  final int _selectedOption = 0;
+  int _selectedOption = 0;
+  final _popoverController = ShadPopoverController();
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -31,30 +35,34 @@ class _PlusminusState extends State<Plusminus> {
         // 1. Minus Button
         Expanded(
           child: SizedBox(
-            height: 48, // Feste Höhe für ein gutes Klickgefühl
+            height: 48,
             child: ShadIconButton.outline(
               icon: const Icon(LucideIcons.minus),
               onPressed: widget.onMinusPressed,
-              // Keine Breite setzen, das übernimmt das Expanded!
             ),
           ),
         ),
 
-        // Abstand zwischen Minus und Textbox
         const SizedBox(width: 12),
 
         // 2. Mittlerer Anzeige-Container
-        /* Expanded(
-          child: GestureDetector(
-            onTap: () {
-              showCupertinoModalPopup(
-                context: context,
-                builder: (BuildContext context) {
-                  return Container(
-                    height: 250,
-                    color: Colors.white,
+        Expanded(
+          child: ShadPopover(
+            controller: _popoverController,
+            popover: (context) => SizedBox(
+              width: 150,
+              height: 150,
+              child: Column(
+                mainAxisAlignment: .center,
+                children: [
+                  Expanded(
                     child: CupertinoPicker(
                       itemExtent: _kItemExtent,
+                      selectionOverlay: const SizedBox(),
+                      looping: true,
+                      scrollController: FixedExtentScrollController(
+                        initialItem: _selectedOption,
+                      ),
                       onSelectedItemChanged: (int selectedItem) {
                         setState(() {
                           _selectedOption = selectedItem;
@@ -62,28 +70,45 @@ class _PlusminusState extends State<Plusminus> {
                       },
 
                       children: _optionen.map((int wert) {
-                        return Text("$wert ml");
+                        return Text(
+                          "$wert ml",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        );
                       }).toList(),
                     ),
-                  );
-                },
-              );
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(
-                  12,
-                ), // Leicht abgerundet wie im Bild
-                // Eine sehr dezente graue Umrandung, passend zu Shadcn UI Outlines
-                border: Border.all(width: 1, color: Colors.grey.shade200),
+                  ),
+                  SizedBox(height: 10),
+                  ShadButton(
+                    onPressed: () {
+                      setState(() {});
+                    },
+                    width: double.infinity,
+                    child: const Text('Primary'),
+                  ),
+                ],
               ),
-              child: Center(child: Text("${widget.currentStep} ml")),
+            ),
+            child: GestureDetector(
+              onTap: _popoverController.toggle,
+
+              child: SizedBox(
+                height: 48,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(width: 1, color: Colors.grey.shade200),
+                  ),
+                  child: Center(child: Text("${_selectedOption}ml")),
+                ),
+              ),
             ),
           ),
-        ), */
+        ),
 
-        // Abstand zwischen Textbox und Plus
         const SizedBox(width: 12),
 
         // 3. Plus Button
