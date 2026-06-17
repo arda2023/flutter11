@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter11/models/navbarpainter.dart';
 
 class Navbar extends StatelessWidget {
   final ValueChanged<int> onDestinationSelected;
   final int currentIndex;
+
   const Navbar({
     super.key,
     required this.currentIndex,
@@ -16,8 +18,6 @@ class Navbar extends StatelessWidget {
       child: Container(
         height: 75,
         decoration: BoxDecoration(
-          color: const Color(0xFFD2C1FF), // Lavender/Hellviolett
-          borderRadius: BorderRadius.circular(50),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.1),
@@ -26,18 +26,21 @@ class Navbar extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildNavItem(Icons.home_outlined, Icons.home, "Home", 0),
-            _buildNavItem(Icons.numbers_outlined, Icons.numbers, "Stats", 1),
-            _buildNavItem(
-              Icons.settings_outlined,
-              Icons.settings,
-              "Settings",
-              2,
-            ),
-          ],
+        child: CustomPaint(
+          painter: NavbarPainter(),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildNavItem(Icons.home_outlined, Icons.home, "Home", 0),
+              _buildNavItem(Icons.numbers_outlined, Icons.numbers, "Stats", 1),
+              _buildNavItem(
+                Icons.settings_outlined,
+                Icons.settings,
+                "Settings",
+                2,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -50,12 +53,13 @@ class Navbar extends StatelessWidget {
     int index,
   ) {
     final isSelected = currentIndex == index;
+
     return InkWell(
       onTap: () {
         onDestinationSelected(index);
       },
       child: SizedBox(
-        width: 80, // Feste Breite für jedes Element für perfekte Symmetrie
+        width: 80,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

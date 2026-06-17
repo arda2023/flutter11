@@ -9,7 +9,7 @@ class NavbarPainter extends CustomPainter {
     canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
     final path = Path();
     path.moveTo(0, 0);
-    path.lineTo(size.width, 0);
+    path.lineTo(size.width / 2 - 40, 0);
     path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
     path.close();
