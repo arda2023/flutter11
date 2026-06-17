@@ -1,23 +1,36 @@
-import 'dart:core';
-
 import 'package:flutter/material.dart';
+import 'package:flutter11/screens/Home_Content.dart';
+import 'package:flutter11/screens/Stats.dart';
+import 'package:flutter11/screens/settings.dart';
+import 'package:flutter11/widgets/navbar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
-final List<String>
-int currentPageIndex = 0;
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
 
+class _HomeScreenState extends State<HomeScreen> {
+  final List<Widget> pages = [
+    const HomeContent(),
+    const StatsPage(),
+    const SettingsPage(),
+  ];
+  int currentPageIndex = 0;
   @override
   Widget build(BuildContext context) {
-        final pages = [
-      const HomePage(),
-      const NotificationPage(),
-    ];
-    return Scaffold(body: NavigationBar(  onDestinationSelected: (int index) {
-    setState(() {
-      currentPageIndex = index;
-    });
-  }, destinations: [NavigationDestination(icon: Icon(Icons.home_outlined), label: "home", selectedIcon: Icon(Icons.home),)] ));
+    return Scaffold(
+      bottomNavigationBar: Navbar(
+        currentIndex: currentPageIndex,
+        onDestinationSelected: (index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+      ),
+
+      body: pages[currentPageIndex],
+    );
   }
 }
