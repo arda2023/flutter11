@@ -40,6 +40,9 @@ dependencies:
   forui: ^0.22.3
   forui_assets: ^0.22.1
   flutter_svg: ^2.3.0
+  floating_menu_panel: ^0.0.2
+  flutter_floating_bottom_bar: ^2.0.0
+  floating_bottom_bar: ^0.0.4
 
 dev_dependencies:
   flutter_test:

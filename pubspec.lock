@@ -113,6 +113,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.9"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      sha256: "3e0141505477fd8ad55d6eb4e7776d3fe8430be8e497ccb1521370c3f21a3e2b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.8"
   extended_image:
     dependency: transitive
     description:
@@ -153,6 +161,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.1"
+  floating_bottom_bar:
+    dependency: "direct main"
+    description:
+      name: floating_bottom_bar
+      sha256: "2b836b84f3784eac47ff11589be07b8cccd403580643889d5afc66e14fd50cb6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
+  floating_menu_panel:
+    dependency: "direct main"
+    description:
+      name: floating_menu_panel
+      sha256: "465a193c28903ba4d4b6fadb147440ae6ce056dfacaf0cbb43502351adaeada4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -166,6 +190,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.5.2"
+  flutter_floating_bottom_bar:
+    dependency: "direct main"
+    description:
+      name: flutter_floating_bottom_bar
+      sha256: "2b41cfea2aaf2738da74b097f5a2c7d6dc38f2e0255f1355118ad0834a2348e5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -384,6 +416,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.6"
+  motor:
+    dependency: transitive
+    description:
+      name: motor
+      sha256: cbd49f21b00e568c2b1a55f134ed803614a107782f4fea7769693bca32940c58
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   objective_c:
     dependency: transitive
     description:
