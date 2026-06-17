@@ -50,9 +50,10 @@ class Navbar extends StatelessWidget {
     int index,
   ) {
     final isSelected = currentIndex == index;
-    return GestureDetector(
-      onTap: () => onDestinationSelected(index),
-      behavior: HitTestBehavior.opaque,
+    return InkWell(
+      onTap: () {
+        onDestinationSelected(index);
+      },
       child: SizedBox(
         width: 80, // Feste Breite für jedes Element für perfekte Symmetrie
         child: Column(
