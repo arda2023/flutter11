@@ -27,7 +27,7 @@ class Navbar extends StatelessWidget {
           ],
         ),
         child: CustomPaint(
-          painter: NavbarPainter(),
+          painter: NavbarPainter(selectedIndex: 0, totalItems: 3),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
