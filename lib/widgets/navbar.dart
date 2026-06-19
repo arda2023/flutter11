@@ -34,7 +34,10 @@ class _NavbarState extends State<Navbar> {
           ],
         ),
         child: CustomPaint(
-          painter: NavbarPainter(selectedIndex: 0, totalItems: 3),
+          painter: NavbarPainter(
+            selectedIndex: widget.currentIndex,
+            totalItems: 3,
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -63,6 +66,7 @@ class _NavbarState extends State<Navbar> {
 
     return InkWell(
       onTap: () {
+        print("geklickt: $index");
         widget.onDestinationSelected(index);
       },
       child: SizedBox(
