@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter11/models/navbarpainter.dart';
 
-class Navbar extends StatelessWidget {
+class Navbar extends StatefulWidget {
   final ValueChanged<int> onDestinationSelected;
   final int currentIndex;
 
@@ -12,7 +12,14 @@ class Navbar extends StatelessWidget {
   });
 
   @override
+  State<Navbar> createState() => _NavbarState();
+}
+
+class _NavbarState extends State<Navbar> {
+  @override
   Widget build(BuildContext context) {
+    print("${widget.currentIndex}");
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
       child: Container(
@@ -52,11 +59,11 @@ class Navbar extends StatelessWidget {
     String label,
     int index,
   ) {
-    final isSelected = currentIndex == index;
+    final isSelected = widget.currentIndex == index;
 
     return InkWell(
       onTap: () {
-        onDestinationSelected(index);
+        widget.onDestinationSelected(index);
       },
       child: SizedBox(
         width: 80,

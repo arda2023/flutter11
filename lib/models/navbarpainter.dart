@@ -22,7 +22,7 @@ class NavbarPainter extends CustomPainter {
     path.lineTo(zielX - 40, 0);
 
     // Kurve für die Aussparung
-    path.cubicTo(zielX - 20, 0, zielX - 20, 35, zielX + 40, 0);
+    path.cubicTo(zielX - 20, 0, zielX - 25, 35, zielX + 40, 0);
 
     // Rest der oberen Kante
     path.lineTo(size.width, 0);
