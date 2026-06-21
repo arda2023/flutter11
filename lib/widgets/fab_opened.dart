@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter11/widgets/meds.dart';
+import 'package:flutter11/widgets/meds_search_box.dart';
 
 class FabOpened extends StatefulWidget {
   const FabOpened({super.key, required this.scrollController});
@@ -39,7 +39,7 @@ class _FabOpenedState extends State<FabOpened> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                SearchBarClass(),
+                MedsSearchBox(),
                 const SizedBox(
                   height: 20,
                 ), // Abstand nach unten zum Bildschirmrand
