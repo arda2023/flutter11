@@ -11,7 +11,10 @@ class HomeContent extends StatelessWidget {
           FadeEffect(duration: 600.ms),
           SlideEffect(curve: Curves.easeIn),
         ],
-        child: Text('Home Content', style: TextStyle(fontSize: 24)),
+        child: Text(
+          'Home Content',
+          style: TextStyle(fontSize: 24, color: Colors.white),
+        ),
       ),
     );
   }
