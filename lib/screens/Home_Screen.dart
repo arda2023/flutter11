@@ -1,4 +1,4 @@
-import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter11/screens/Home_Content.dart';
 import 'package:flutter11/screens/Stats.dart';
@@ -12,8 +12,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final NotchBottomBarController controller = NotchBottomBarController();
-
   final List<Widget> pages = const [HomeContent(), StatsPage(), SettingsPage()];
 
   int currentPageIndex = 0;
@@ -21,40 +19,18 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.amber,
       body: pages[currentPageIndex],
-
-      bottomNavigationBar: SizedBox(
-        height: 100,
-        child: AnimatedNotchBottomBar(
-          notchBottomBarController: controller,
-
-          kIconSize: 24,
-          kBottomRadius: 28,
-
-          bottomBarItems: const [
-            BottomBarItem(
-              inActiveItem: Icon(Icons.home_outlined),
-              activeItem: Icon(Icons.home),
-              itemLabel: 'Home',
-            ),
-            BottomBarItem(
-              inActiveItem: Icon(Icons.bar_chart_outlined),
-              activeItem: Icon(Icons.bar_chart),
-              itemLabel: 'Stats',
-            ),
-            BottomBarItem(
-              inActiveItem: Icon(Icons.settings_outlined),
-              activeItem: Icon(Icons.settings),
-              itemLabel: 'Settings',
-            ),
-          ],
-
-          onTap: (index) {
-            setState(() {
-              currentPageIndex = index;
-            });
-          },
-        ),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.blueAccent,
+        items: <Widget>[
+          Icon(Icons.add, size: 30),
+          Icon(Icons.list, size: 30),
+          Icon(Icons.compare_arrows, size: 30),
+        ],
+        onTap: (index) {
+          //Handle button tap
+        },
       ),
     );
   }
