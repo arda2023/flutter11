@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter11/models/navbarpainter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Navbar extends StatefulWidget {
   final ValueChanged<int> onDestinationSelected;
@@ -55,7 +56,12 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     print("${widget.currentIndex}");
-
+    // Berechne die Breite eines Segments basierend auf dem verfügbaren Platz:
+    // Da wir links und rechts 24px Padding haben, nehmen wir die Bildschirmbreite minus 48
+    final double gesamtBreite = MediaQuery.of(context).size.width - 48;
+    final double segmentBreite = gesamtBreite / 3;
+    final double aktivesZielX =
+        (segmentBreite * widget.currentIndex) + (segmentBreite / 2);
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
       child: Container(
@@ -103,6 +109,21 @@ class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
                     2,
                   ),
                 ],
+              ),
+            ),
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 350),
+              curve: Curves.easeInOutCubic,
+              left: aktivesZielX - 12,
+              top: -10,
+              child: SvgPicture.asset(
+                "assets/tropfen.svg",
+                width: 24,
+                height: 24,
+                colorFilter: ColorFilter.mode(
+                  Colors.purple.shade900,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
           ],
