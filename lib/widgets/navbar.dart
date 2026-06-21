@@ -15,7 +15,43 @@ class Navbar extends StatefulWidget {
   State<Navbar> createState() => _NavbarState();
 }
 
-class _NavbarState extends State<Navbar> {
+class _NavbarState extends State<Navbar> with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<double> animation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 350),
+    );
+    animation = AlwaysStoppedAnimation(widget.currentIndex.toDouble());
+  }
+
+  @override
+  void didUpdateWidget(Navbar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.currentIndex != widget.currentIndex) {
+      animation =
+          Tween<double>(
+            begin: oldWidget.currentIndex.toDouble(),
+            end: widget.currentIndex.toDouble(),
+          ).animate(
+            CurvedAnimation(parent: controller, curve: Curves.easeInOutCubic),
+          );
+
+      controller.forward(from: 0.0);
+    }
+  }
+
+  // Wir fügen hier auch direkt das Saubermachen hinzu, um Abstürze zu verhindern:
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     print("${widget.currentIndex}");
@@ -33,30 +69,49 @@ class _NavbarState extends State<Navbar> {
             ),
           ],
         ),
-        child: CustomPaint(
-          painter: NavbarPainter(
-            selectedIndex: widget.currentIndex,
-            totalItems: 3,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildNavItem(Icons.home_outlined, Icons.home, "Home", 0),
-              _buildNavItem(Icons.numbers_outlined, Icons.numbers, "Stats", 1),
-              _buildNavItem(
-                Icons.settings_outlined,
-                Icons.settings,
-                "Settings",
-                2,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: AnimatedBuilder(
+                animation: controller,
+                builder: (context, child) {
+                  return CustomPaint(
+                    painter: NavbarPainter(
+                      selectedIndex:
+                          animation.value, // Der fließende Komma-Wert
+                      totalItems: 3,
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+            Positioned.fill(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  buildNavItem(Icons.home_outlined, Icons.home, "Home", 0),
+                  buildNavItem(
+                    Icons.numbers_outlined,
+                    Icons.numbers,
+                    "Stats",
+                    1,
+                  ),
+                  buildNavItem(
+                    Icons.settings_outlined,
+                    Icons.settings,
+                    "Settings",
+                    2,
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildNavItem(
+  Widget buildNavItem(
     IconData icon,
     IconData activeIcon,
     String label,
@@ -69,28 +124,36 @@ class _NavbarState extends State<Navbar> {
         print("geklickt: $index");
         widget.onDestinationSelected(index);
       },
-      child: SizedBox(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeOutBack,
+
         width: 80,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              isSelected ? activeIcon : icon,
-              color: Colors.purple.shade900,
-              size: 26,
-            ),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: TextStyle(
+        child: Padding(
+          padding: EdgeInsets.only(top: isSelected ? 15 : 0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                isSelected ? activeIcon : icon,
                 color: Colors.purple.shade900,
-                fontSize: 12,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                size: 26,
               ),
-            ),
-          ],
+              const SizedBox(height: 4),
+              Text(
+                label,
+                style: TextStyle(
+                  color: Colors.purple.shade900,
+                  fontSize: 12,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+
+  // ...
 }
