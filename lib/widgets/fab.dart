@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter11/models/Medeintrag.dart';
 import 'package:flutter11/widgets/fab_opened.dart';
 
 class Fab extends StatefulWidget {
   const Fab({super.key, required this.onEintragAdded});
-  final ValueChanged<String?> onEintragAdded;
+  final ValueChanged<MedikamentenEintrag> onEintragAdded;
   @override
   _FabState createState() => _FabState();
 }
@@ -31,7 +32,10 @@ class _FabState extends State<Fab> with TickerProviderStateMixin {
           maxChildSize: 0.95,
           expand: false,
           builder: (context, scrollController) {
-            return FabOpened(scrollController: scrollController);
+            return FabOpened(
+              scrollController: scrollController,
+              onEintragAdded: widget.onEintragAdded,
+            );
           },
         );
       },

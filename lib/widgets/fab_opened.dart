@@ -80,13 +80,15 @@ class _FabOpenedState extends State<FabOpened> {
                   child: TextButton(
                     onPressed: _gewaehlteDosisInSheet != null
                         ? () {
-                            MedikamentenEintrag(
-                              name: _gewaehltesMedikamentInSheet,
-                              dosis: _gewaehlteDosisInSheet,
+                            widget.onEintragAdded(
+                              MedikamentenEintrag(
+                                name: _gewaehltesMedikamentInSheet,
+                                dosis: _gewaehlteDosisInSheet,
+                              ),
                             );
+                            Navigator.pop(context);
                           }
                         : null,
-
                     style: ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(
                         _gewaehlteDosisInSheet != null
