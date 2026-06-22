@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter11/models/Medeintrag.dart';
 import 'package:flutter11/screens/Home_Content.dart';
 import 'package:flutter11/screens/Stats.dart';
 import 'package:flutter11/screens/settings.dart';
@@ -16,6 +17,12 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> pages = const [HomeContent(), StatsPage(), SettingsPage()];
 
   int currentPageIndex = 0;
+  List<MedikamentenEintrag> meineMedikamente = [
+    MedikamentenEintrag(
+      dosis: _gewaehlteDosisInSheet,
+      name: _gewaehltesMedikamentInSheet,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {

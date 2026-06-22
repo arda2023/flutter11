@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter11/medikamente.dart';
 
 class MedsSearchBox extends StatefulWidget {
-  const MedsSearchBox({super.key});
-
+  const MedsSearchBox({
+    super.key,
+    required this.onDosisChanged,
+    required this.onMedikamentChanged,
+  });
+  final ValueChanged<String?> onDosisChanged;
+  final ValueChanged<String?> onMedikamentChanged;
   @override
   _MedsSearchBoxState createState() => _MedsSearchBoxState();
 }
@@ -60,10 +65,12 @@ class _MedsSearchBoxState extends State<MedsSearchBox> {
                       setState(() {
                         _searchController.closeView(med["name"]);
                         _gewaehltesMedikament = med["name"];
+                        widget.onMedikamentChanged(med["name"]);
                         _verfuegbareDosen = List<String>.from(
                           med["dosierungen"],
                         );
                         _gewaehlteDosis = null;
+                        widget.onDosisChanged(_gewaehlteDosis);
                       });
                     },
                   );
@@ -86,21 +93,26 @@ class _MedsSearchBoxState extends State<MedsSearchBox> {
               Wrap(
                 spacing: 8.0,
                 runSpacing: 4.0,
+
                 children: _verfuegbareDosen.map((dosis) {
                   final bool istAktiv = _gewaehlteDosis == dosis;
                   return ChoiceChip(
+                    showCheckmark: false,
                     label: Text(dosis),
                     selected: istAktiv,
-                    selectedColor: Colors.black12,
+
+                    backgroundColor: Colors.grey[300],
+                    selectedColor: Colors.blue[300],
                     onSelected: (bool selected) {
                       setState(() {
                         _gewaehlteDosis = selected ? dosis : null;
+                        widget.onDosisChanged(_gewaehlteDosis);
                       });
                     },
                   );
                 }).toList(),
               ),
-            ], // <-- Hier endet
+            ],
           ],
         ),
       ),
