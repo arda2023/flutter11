@@ -3,8 +3,13 @@ import 'package:flutter11/models/Medeintrag.dart';
 import 'package:flutter11/widgets/meds_search_box.dart';
 
 class FabOpened extends StatefulWidget {
-  const FabOpened({super.key, required this.scrollController});
+  const FabOpened({
+    super.key,
+    required this.scrollController,
+    required this.onEintragAdded,
+  });
   final ScrollController scrollController;
+  final ValueChanged<MedikamentenEintrag> onEintragAdded;
 
   @override
   State<FabOpened> createState() => _FabOpenedState();
@@ -76,7 +81,7 @@ class _FabOpenedState extends State<FabOpened> {
                     onPressed: _gewaehlteDosisInSheet != null
                         ? () {
                             MedikamentenEintrag(
-                              name: _gewaehlteDosisInSheet,
+                              name: _gewaehltesMedikamentInSheet,
                               dosis: _gewaehlteDosisInSheet,
                             );
                           }

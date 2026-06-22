@@ -15,14 +15,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> pages = const [HomeContent(), StatsPage(), SettingsPage()];
+  void _addMedikament(MedikamentenEintrag neuerEintrag) {
+    setState(() {
+      meineMedikamente.add(neuerEintrag);
+    });
+  }
 
   int currentPageIndex = 0;
-  List<MedikamentenEintrag> meineMedikamente = [
-    MedikamentenEintrag(
-      dosis: _gewaehlteDosisInSheet,
-      name: _gewaehltesMedikamentInSheet,
-    ),
-  ];
+  List<MedikamentenEintrag> meineMedikamente = [];
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
 
-      floatingActionButton: Fab(),
+      floatingActionButton: Fab(onEintragAdded: _addMedikament),
     );
   }
 }

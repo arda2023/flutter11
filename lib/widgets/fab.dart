@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter11/widgets/fab_opened.dart';
 
 class Fab extends StatefulWidget {
-  const Fab({super.key});
-
+  const Fab({super.key, required this.onEintragAdded});
+  final ValueChanged<String?> onEintragAdded;
   @override
   _FabState createState() => _FabState();
 }
